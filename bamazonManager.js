@@ -92,7 +92,7 @@ function addInventory(){
         },
         {
         type: "input",
-        message: "How many total units should be in stock for this item?",
+        message: "How many units would you like to add to inventory?",
         name: "theAmount",
         validate: function(value) {
             if (isNaN(value) === false) {
@@ -102,21 +102,10 @@ function addInventory(){
           }
     }]).then(function(inqResponse){
 
-        connection.query("UPDATE products SET ? WHERE ?",[
-            {
-                stock_quantity:parseInt(inqResponse.theAmount)
-            },
-            {
-                item_id: inqResponse.theID    
-            }], 
+        connection.query(`UPDATE products SET stock_quantity = stock_quantity + ${inqResponse.theAmount} WHERE item_id = ${inqResponse.theID}`,
+      
             function(error, results){
                 if(error){console.log(error);}
-
-                //this won't show up
-                // for(var i=0; i<results.length;i++){
-                    // console.log("ID#: " + results[i].item_id + " | Product: " + results[i].product_name + " | Department: " + results[i].department_name + " | Price($): " +
-                    // results[i].price + " | Stock left: " + results[i].stock_quantity);
-                // }
             })     
         inquire();
     }) 

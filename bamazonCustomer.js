@@ -28,11 +28,8 @@ function start (){
             console.log("ID#: " + results[i].item_id + " | Product: " + results[i].product_name + " | Department: " + results[i].department_name + " | Price($): " +
              results[i].price + " | Stock left: " + results[i].stock_quantity);
         }
-
          whichProduct();
-
-    })
-    
+    })  
 }
 
 function whichProduct(){
@@ -82,17 +79,16 @@ function whichProduct(){
                             console.log("Price: " + results[0].price);
                             console.log("Quantity Requested: " + inqResponse.purchaseQuantity);  
                             console.log("Total($): " + results[0].price*inqResponse.purchaseQuantity); 
-                              
 
                             connection.query("UPDATE products SET ? WHERE ?",[
                             {
-                                stock_quantity: results[0].stock_quantity - inqResponse.purchaseQuantity
+                                stock_quantity: results[0].stock_quantity - inqResponse.purchaseQuantity,
+                                product_sales: results[0].product_sales + (results[0].price * inqResponse.purchaseQuantity)
                             },
                             {
                                 item_id: inqResponse.purchaseItemNumber
                             }])
-                        }
-                                           
+                        }                      
                     })
             }
             start();
