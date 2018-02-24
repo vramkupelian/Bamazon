@@ -64,8 +64,46 @@ function createDept(){
             }
             return false;
         }
+    },
+    {
+        type:"input",
+        message: "What product will you sell in this department?",
+        name: "productName",
+    },
+    {
+        type:"input",
+        message: "At what price will it be sold?",
+        name: "thePrice",
+        validate: function(value) {
+            if (isNaN(value) === false) {
+              return true;
+            }
+            return false;
+        }
+    },
+    {
+        type: "input",
+        message: "How many should we stock?",
+        name: "theAmount",
+        validate: function(value) {
+            if (isNaN(value) === false) {
+              return true;
+            }
+            return false;
+        }
     }
     ]).then(function(inqResponse){
+
+        connection.query("INSERT INTO products SET ?",
+        {
+            product_name: inqResponse.productName,
+            price: inqResponse.thePrice,
+            stock_quantity: inqResponse.theAmount,
+            department_name: inqResponse.deptName
+        },
+        function(error,results){
+            if(error){console.log(error);}
+        })
 
         connection.query("INSERT INTO departments SET ?",
         {

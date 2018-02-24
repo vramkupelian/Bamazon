@@ -14,7 +14,7 @@ connection.connect(function(error){
     if(error){
         console.log(error);
     }
-    // console.log(`Connect as id ${connection.threadId}`);
+    console.log("Connected. Welcome to Bamazon!");
 });
 
 function start (){
@@ -79,6 +79,7 @@ function whichProduct(){
                             console.log("Price: " + results[0].price);
                             console.log("Quantity Requested: " + inqResponse.purchaseQuantity);  
                             console.log("Total($): " + results[0].price*inqResponse.purchaseQuantity); 
+                            console.log("\n");
 
                             connection.query("UPDATE products SET ? WHERE ?",[
                             {
@@ -88,11 +89,10 @@ function whichProduct(){
                             {
                                 item_id: inqResponse.purchaseItemNumber
                             }])
-                        }                      
+                        } 
+                        start();                     
                     })
             }
-            start();
         })
     }
 start();
-// start().then(whichProduct);

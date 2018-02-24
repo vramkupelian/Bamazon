@@ -155,7 +155,8 @@ function addProduct(){
             stock_quantity: inqResponse.theAmount
             },
             function(err, res) {
-            console.log(res.affectedRows + " product inserted!\n");
+                if(err){console.log(err);}
+            // console.log(res.affectedRows + " product inserted!\n");
             inquire();
             }
         );
