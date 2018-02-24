@@ -3,9 +3,9 @@
 Node and MySQL integration.
 
 Tools:
-Node.js
-MySQL Workbench
-VS code
+\n Node.js
+\n MySQL Workbench
+\n VS code
 
 bamazon.sql to be run to set up the database. 
 
