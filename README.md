@@ -3,16 +3,12 @@
 Node and MySQL integration.
 
 Tools:
-\n Node.js
-\n MySQL Workbench
-\n VS code
+Node.js | MySQL Workbench | VS code
 
 bamazon.sql to be run to set up the database. 
 
 # For node:
-npm install inquirer
-npm install mysql
-npm install console.table (only for bamazonSupervisor.js)
+npm install inquirer | npm install mysql | npm install console.table (only for bamazonSupervisor.js)
 
 
 # How does it work?
